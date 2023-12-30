@@ -6,13 +6,16 @@ import com.mohamed.taskmanagement.service.IEventServcie;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class IEventServcieImpl implements IEventServcie {
 
     private EventRepository eventRepository;
+
     @Override
-    public void createEvent(Event event) {
-        eventRepository.save(event);
+    public List<Event> findAllEvents() {
+        return eventRepository.findAll();
     }
 }
