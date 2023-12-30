@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class EventController {
 
     private IEventServcie iEventServcie;
 
-    @GetMapping
+    @GetMapping("event-list")
     public String createEvent(Model theModel) {
         List<Event> events = iEventServcie.findAllEvents();
         theModel.addAttribute("events", events);
@@ -26,7 +27,15 @@ public class EventController {
     }
 
     @GetMapping("add-event")
-    public String showEventForm(){
+    public String showEventForm(Model theModle){
+        Event event = new Event();
+        theModle.addAttribute("event", event);
+
         return "add-event";
+    }
+
+    @PostMapping("save")
+    public String saveEvent(){
+        return "redirect:/event-list";
     }
 }

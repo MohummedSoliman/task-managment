@@ -1,20 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Insert title here</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
-    <table class="table">
-        <tr>
-            <td>test</td>
-            <td>test2</td>
-        </tr>
-    </table>
+    <h3 class="mb-5">Add New Employee Form</h3>
+    <hr>
+    <form action="#" th:action="@{/events/save}"
+          th:object="${event}" method="POST">
+        <!--        <input type="hidden" th:field="*{id}">-->
+        <div class="mb-3">
+            <label class="form-label">Summary :</label> <input type="text"
+                                                               th:field="*{summary}" placeholder="Event Summary"
+                                                               class="form-control mb-4 w-25">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description :</label> <input type="text"
+                                                                   th:field="*{description}"
+                                                                   placeholder="Event Description"
+                                                                   class="form-control mb-4 w-25">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Start :</label>
+            <div class="input-group">
+                <input type="date"
+                       th:field="*{start.date}" placeholder="Event Start Date"
+                       class="form-control mb-4 w-25">
+                <input type="time"
+                       th:field="*{start.dateTime}" placeholder="Event Start Time"
+                       class="form-control mb-4 w-25">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">End :</label>
+            <div class="input-group">
+                <input type="date"
+                       th:field="*{end.date}" placeholder="Event End Date"
+                       class="form-control mb-4  w-25">
+                <input type="time"
+                       th:field="*{start.dateTime}" placeholder="Event End Date"
+                       class="form-control mb-4 w-25">
+            </div>
+        </div>
+        <input type="submit" value="submit" class="btn btn-info col-2">
+    </form>
+    <hr>
+    <a th:href="@{/event-list}">Back to Events List</a>
 </div>
 </body>
 </html>
