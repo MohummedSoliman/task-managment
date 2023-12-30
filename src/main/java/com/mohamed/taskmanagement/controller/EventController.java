@@ -43,4 +43,12 @@ public class EventController {
         iEventServcie.deleteEventById(id);
         return "redirect:/events/event-list";
     }
+
+    @GetMapping("/update")
+    public String showEventFormForUpdate(@RequestParam("eventId") String id, Model theModel){
+        Event event = iEventServcie.getEventById(id);
+        theModel.addAttribute("event", event);
+
+        return "add-event";
+    }
 }
