@@ -29,7 +29,8 @@
             <label class="form-label">Start :</label>
             <div class="input-group">
                 <input type="datetime-local"
-                       th:field="*{start.dateTime}" placeholder="Event Start Time"
+                       th:field="*{start.dateTime}"
+                       placeholder="Event Start Time"
                        class="form-control mb-4 w-25">
             </div>
         </div>
@@ -37,14 +38,15 @@
             <label class="form-label">End :</label>
             <div class="input-group">
                 <input type="datetime-local"
-                       th:field="*{end.dateTime}" placeholder="Event End Date"
+                       th:field="*{end.dateTime}"
+                       placeholder="Event End Date"
                        class="form-control mb-4 w-25">
             </div>
         </div>
         <input type="submit" value="submit" class="btn btn-info col-2">
     </form>
     <hr>
-    <a th:href="@{/event-list}">Back to Events List</a>
+    <a th:href="@{/events/event-list}">Back to Events List</a>
 </div>
 </body>
 </html>
