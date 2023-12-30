@@ -29,7 +29,7 @@
             <td th:text="${event.start.dateTime}"></td>
             <td th:text="${event.end.dateTime}"></td>
             <td>
-                <a class="btn btn-danger">Delete</a>
+                <a class="btn btn-danger" th:href="@{/events/delete(eventId=${event.id})}">Delete</a>
             </td>
         </tr>
         </tbody>

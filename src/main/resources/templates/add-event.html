@@ -28,10 +28,7 @@
         <div class="mb-3">
             <label class="form-label">Start :</label>
             <div class="input-group">
-                <input type="date"
-                       th:field="*{start.date}" placeholder="Event Start Date"
-                       class="form-control mb-4 w-25">
-                <input type="time"
+                <input type="datetime-local"
                        th:field="*{start.dateTime}" placeholder="Event Start Time"
                        class="form-control mb-4 w-25">
             </div>
@@ -39,11 +36,8 @@
         <div class="mb-3">
             <label class="form-label">End :</label>
             <div class="input-group">
-                <input type="date"
-                       th:field="*{end.date}" placeholder="Event End Date"
-                       class="form-control mb-4  w-25">
-                <input type="time"
-                       th:field="*{start.dateTime}" placeholder="Event End Date"
+                <input type="datetime-local"
+                       th:field="*{end.dateTime}" placeholder="Event End Date"
                        class="form-control mb-4 w-25">
             </div>
         </div>
