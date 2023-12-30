@@ -18,4 +18,10 @@ public interface IEventServcie {
      *
      */
     void createEvent(Event event);
+
+    /**
+     *
+     * @param id
+     */
+    void deleteEventById(String id);
 }

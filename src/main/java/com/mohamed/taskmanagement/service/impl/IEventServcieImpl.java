@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +27,11 @@ public class IEventServcieImpl implements IEventServcie {
     public void createEvent(Event event) {
         createNewEvent(event);
         eventRepository.save(event);
+    }
+
+    @Override
+    public void deleteEventById(String id) {
+        eventRepository.deleteById(id);
     }
 
     private Event createNewEvent(Event event){
