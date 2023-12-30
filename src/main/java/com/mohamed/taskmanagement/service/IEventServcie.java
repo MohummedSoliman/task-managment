@@ -24,4 +24,11 @@ public interface IEventServcie {
      * @param id
      */
     void deleteEventById(String id);
+
+    /**
+     *
+     * @param id
+     * @return Event
+     */
+    Event getEventById(String id);
 }

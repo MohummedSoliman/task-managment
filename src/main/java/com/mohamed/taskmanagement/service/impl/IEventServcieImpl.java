@@ -34,6 +34,12 @@ public class IEventServcieImpl implements IEventServcie {
         eventRepository.deleteById(id);
     }
 
+    @Override
+    public Event getEventById(String id) {
+        Event event = eventRepository.findById(id).get();
+        return event;
+    }
+
     private Event createNewEvent(Event event){
         String eventId = generateEventId();
         event.setId(eventId);
@@ -51,7 +57,7 @@ public class IEventServcieImpl implements IEventServcie {
         return eventId;
     }
 
-    private LocalDate extractDateFromDateTime(LocalDateTime dateTime){
+    private LocalDate extractDateFromDateTime(String dateTime){
         String dateStr = dateTime.toString().split("T")[0];
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(dateStr, formatter);
