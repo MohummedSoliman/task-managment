@@ -22,7 +22,17 @@
             <th>Action</th>
         </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+        <tr th:each="event : ${events}">
+            <td th:text="${event.summary}"></td>
+            <td th:text="${event.description}"></td>
+            <td th:text="${event.start.dateTime}"></td>
+            <td th:text="${event.end.dateTime}"></td>
+            <td>
+                <a class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
     </table>
     <a th:href="@{/events/add-event}" class="btn btn-primary">Add New Event</a>
 </div>
