@@ -21,7 +21,7 @@ public class EventDateTime {
     private LocalDate date;
 
     @Column(name = "date_time")
-    private LocalDateTime dateTime;
+    private String dateTime;
 
     @Column(name = "time_zone")
     private String timeZone;
