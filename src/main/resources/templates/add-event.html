@@ -13,7 +13,7 @@
     <hr>
     <form action="#" th:action="@{/events/save}"
           th:object="${event}" method="POST">
-        <!--        <input type="hidden" th:field="*{id}">-->
+        <input type="hidden" th:field="*{id}" th:value="${event.id}" />
         <div class="mb-3">
             <label class="form-label">Summary :</label> <input type="text"
                                                                th:field="*{summary}" placeholder="Event Summary"
