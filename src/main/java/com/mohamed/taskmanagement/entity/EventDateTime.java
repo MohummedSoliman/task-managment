@@ -1,6 +1,7 @@
 package com.mohamed.taskmanagement.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ public class EventDateTime {
     @Column(name = "date")
     private LocalDate date;
 
+    @NotEmpty(message = "Date Filed can not be empty or null")
     @Column(name = "date_time")
     private String dateTime;
 
