@@ -3,6 +3,7 @@ package com.mohamed.taskmanagement.service;
 import com.mohamed.taskmanagement.entity.Event;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IEventServcie {
 
@@ -23,12 +24,14 @@ public interface IEventServcie {
      *
      * @param id
      */
-    void deleteEventById(String id);
+    boolean deleteEventById(String id);
 
     /**
      *
      * @param id
      * @return Event
      */
-    Event getEventById(String id);
+    Optional<Event> getEventById(String id);
+
+    boolean updateEvent(Event event);
 }
