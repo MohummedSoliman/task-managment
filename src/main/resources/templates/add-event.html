@@ -9,27 +9,32 @@
 </head>
 <body>
 <div class="container">
-    <h3 class="mb-5">Add New Employee Form</h3>
+    <h3 class="mb-5">Add New Event Form</h3>
     <hr>
-    <form action="#" th:action="@{/events/save}"
-          th:object="${event}" method="POST">
-        <input type="hidden" th:field="*{id}" th:value="${event.id}" />
+    <form action="#" th:action="@{/save}"
+          th:object="${event}" method="POST" id="eventForm">
+        <input type="hidden" th:field="*{id}" th:value="${event.id}"/>
         <div class="mb-3">
             <label class="form-label">Summary :</label> <input type="text"
                                                                th:field="*{summary}" placeholder="Event Summary"
+                                                               name="summary"
                                                                class="form-control mb-4 w-25">
+            <div class="alert alert-danger" th:if="${summary}" th:text="${summary}"></div>
         </div>
         <div class="mb-3">
             <label class="form-label">Description :</label> <input type="text"
                                                                    th:field="*{description}"
                                                                    placeholder="Event Description"
+                                                                   name="description"
                                                                    class="form-control mb-4 w-25">
+            <div class="alert alert-danger" th:if="${description}" th:text="${description}"></div>
         </div>
         <div class="mb-3">
             <label class="form-label">Start :</label>
             <div class="input-group">
                 <input type="datetime-local"
                        th:field="*{start.dateTime}"
+                       id="startDateTime"
                        placeholder="Event Start Time"
                        class="form-control mb-4 w-25">
             </div>
@@ -39,6 +44,7 @@
             <div class="input-group">
                 <input type="datetime-local"
                        th:field="*{end.dateTime}"
+                       id="endDateTime"
                        placeholder="Event End Date"
                        class="form-control mb-4 w-25">
             </div>
@@ -46,7 +52,8 @@
         <input type="submit" value="submit" class="btn btn-info col-2">
     </form>
     <hr>
-    <a th:href="@{/events/event-list}">Back to Events List</a>
+    <a th:href="@{/}">Back to Events List</a>
 </div>
+<!--<script th:src="@{/handleOfflineTasks.js}"></script>-->
 </body>
 </html>
