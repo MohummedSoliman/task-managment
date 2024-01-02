@@ -13,7 +13,7 @@
     <hr>
     <form action="#" th:action="@{/save}"
           th:object="${event}" method="POST" id="eventForm">
-        <input type="hidden" th:field="*{id}" th:value="${event.id}"/>
+        <input type="hidden" th:field="*{id}" th:value="${event.id}" name="id"/>
         <div class="mb-3">
             <label class="form-label">Summary :</label> <input type="text"
                                                                th:field="*{summary}" placeholder="Event Summary"
@@ -52,7 +52,6 @@
         <input type="submit" value="submit" class="btn btn-info col-2">
     </form>
     <hr>
-    <a th:href="@{/}">Back to Events List</a>
 </div>
 <!--<script th:src="@{/handleOfflineTasks.js}"></script>-->
 </body>
