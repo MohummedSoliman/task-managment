@@ -75,16 +75,7 @@ public class EventsController {
     public String saveEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model theModel)
             throws GeneralSecurityException, IOException {
 
-        System.out.println(event);
-        System.out.println(event.getSummary());
-        System.out.println(event.getDescription());
-        System.out.println(event.getStart());
         if (result.hasErrors()) {
-            result.getAllErrors().forEach(objectError -> {
-                System.out.println(objectError.toString());
-                System.out.println(objectError.getDefaultMessage());
-                System.out.println(objectError.getObjectName());
-            });
             result.getFieldErrors().forEach(fieldError -> {
                 theModel.addAttribute(fieldError.getField(), fieldError.getDefaultMessage());
             });

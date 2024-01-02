@@ -30,8 +30,15 @@ public class IEventServiceImpl implements IEventServcie {
 
     @Override
     public void createEvent(Event event) {
-        createNewEvent(event);
-        eventRepository.save(event);
+
+        if (event.getId() == "") {
+            System.out.println("Reach this case if");
+            createNewEvent(event);
+            eventRepository.save(event);
+        } else {
+            System.out.println("Reach Else Case");
+            updateEvent(event);
+        }
         clearEventCache();
     }
 
@@ -56,7 +63,8 @@ public class IEventServiceImpl implements IEventServcie {
     public boolean updateEvent(Event event) {
         Optional<Event> optionalEvent = eventRepository.findById(event.getId());
         if (optionalEvent.isPresent()){
-            eventRepository.save(optionalEvent.get());
+            System.out.println("in this if case");
+            eventRepository.save(event);
             clearEventCache();
             return true;
         }
