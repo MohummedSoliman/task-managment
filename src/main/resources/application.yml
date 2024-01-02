@@ -5,4 +5,4 @@ spring:
     password: ''
 google:
   client:
-    redirectUri: http://localhost:8080/events/event-list
+    redirectUri: http://localhost:8080/event-list
