@@ -4,21 +4,26 @@ import com.mohamed.taskmanagement.entity.Event;
 import com.mohamed.taskmanagement.repository.EventRepository;
 import com.mohamed.taskmanagement.service.IEventServcie;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class IEventServcieImpl implements IEventServcie {
+public class IEventServiceImpl implements IEventServcie {
 
     private EventRepository eventRepository;
 
+    private CacheManager cacheManager;
+
     @Override
+    @Cacheable("events")
     public List<Event> findAllEvents() {
         return eventRepository.findAll();
     }
@@ -27,17 +32,35 @@ public class IEventServcieImpl implements IEventServcie {
     public void createEvent(Event event) {
         createNewEvent(event);
         eventRepository.save(event);
+        clearEventCache();
     }
 
     @Override
-    public void deleteEventById(String id) {
-        eventRepository.deleteById(id);
+    public boolean deleteEventById(String id) {
+        Optional<Event> event = eventRepository.findById(id);
+        if (event.isPresent()){
+            eventRepository.deleteById(id);
+            clearEventCache();
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public Event getEventById(String id) {
-        Event event = eventRepository.findById(id).get();
+    public Optional<Event> getEventById(String id) {
+        Optional<Event> event = eventRepository.findById(id);
         return event;
+    }
+
+    @Override
+    public boolean updateEvent(Event event) {
+        Optional<Event> optionalEvent = eventRepository.findById(event.getId());
+        if (optionalEvent.isPresent()){
+            eventRepository.save(event);
+            clearEventCache();
+            return true;
+        }
+        return false;
     }
 
     private Event createNewEvent(Event event){
@@ -48,8 +71,12 @@ public class IEventServcieImpl implements IEventServcie {
         LocalDate startDate = extractDateFromDateTime(event.getStart().getDateTime());
         event.getStart().setDate(startDate);
         LocalDate endDate = extractDateFromDateTime(event.getEnd().getDateTime());
-        event.getStart().setDate(endDate);
+        event.getEnd().setDate(endDate);
         return event;
+    }
+
+    private void clearEventCache() {
+        cacheManager.getCache("events").clear();
     }
 
     private String generateEventId() {
