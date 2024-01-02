@@ -56,7 +56,7 @@ public class IEventServiceImpl implements IEventServcie {
     public boolean updateEvent(Event event) {
         Optional<Event> optionalEvent = eventRepository.findById(event.getId());
         if (optionalEvent.isPresent()){
-            eventRepository.save(event);
+            eventRepository.save(optionalEvent.get());
             clearEventCache();
             return true;
         }
